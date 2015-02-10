@@ -28,26 +28,27 @@ Deep learning4j spark uses parallel iterative reduce parameter averaging with tr
 
 
 ```
-2. Specify a spark context
-3. Pass both to train
 
-```scala
- val sparkConf = new SparkConf().setMaster("local[8]")
-      .set(SparkDl4jMultiLayer.AVERAGE_EACH_ITERATION, "false")
-      .set("spark.akka.frameSize", "100").setAppName("mnist")
 
-    val sc = new JavaSparkContext(new SparkContext(sparkConf))
+Setup a spark conf and context as normal
 
-    val d: DataSet = new IrisDataSetIterator(150, 150).next
-    d.normalizeZeroMeanZeroUnitVariance
-    d.shuffle
-    val next: java.util.List[DataSet] = d.asList
-
-    val data: JavaRDD[DataSet] = sc.parallelize(next)
-    val examples = MLLibUtil.fromDataSet(sc,data).rdd
-    val network2: MultiLayerNetwork = SparkDl4jMultiLayer.train(examples,conf)
-
-```
+  ```scala
+     val sparkConf = new SparkConf().setMaster("local[8]")
+        .set(SparkDl4jMultiLayer.AVERAGE_EACH_ITERATION, "false")
+        .set("spark.akka.frameSize", "100").setAppName("mnist")
+  
+      val sc = new JavaSparkContext(new SparkContext(sparkConf))
+  
+      val d: DataSet = new IrisDataSetIterator(150, 150).next
+      d.normalizeZeroMeanZeroUnitVariance
+      d.shuffle
+      val next: java.util.List[DataSet] = d.asList
+  
+      val data: JavaRDD[DataSet] = sc.parallelize(next)
+      val examples = MLLibUtil.fromDataSet(sc,data).rdd
+      val network2: MultiLayerNetwork = SparkDl4jMultiLayer.train(examples,conf)
+  
+  ```
 
 
 

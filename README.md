@@ -32,7 +32,7 @@ Deep learning4j spark uses parallel iterative reduce parameter averaging with tr
 
 Setup a spark conf and context as normal
 
-  ```scala
+ ```scala
      val sparkConf = new SparkConf().setMaster("local[8]")
         .set(SparkDl4jMultiLayer.AVERAGE_EACH_ITERATION, "false")
         .set("spark.akka.frameSize", "100").setAppName("mnist")
@@ -47,8 +47,7 @@ Setup a spark conf and context as normal
       val data: JavaRDD[DataSet] = sc.parallelize(next)
       val examples = MLLibUtil.fromDataSet(sc,data).rdd
       val network2: MultiLayerNetwork = SparkDl4jMultiLayer.train(examples,conf)
-  
-  ```
+ ```
 
 
 

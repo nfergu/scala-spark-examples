@@ -61,6 +61,10 @@ http://groups.google.com/forum/#!forum/deeplearning4j
 Submit issues:
 https://github.com/SkymindIO/deeplearning4j/issues
 
+Vote for our hadoop summit talk as well!
+
+https://hadoopsummit.uservoice.com/forums/283261-data-science-and-hadoop/filters/top
+
 
 
 

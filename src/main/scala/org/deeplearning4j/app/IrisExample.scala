@@ -25,7 +25,7 @@ import org.nd4j.linalg.lossfunctions.LossFunctions
 class IrisExample {
 
   def main(args: Array[String]) {
-    val layerFactory = LayerFactories.getFactory(Class[RBM])
+    val layerFactory = LayerFactories.getFactory(classOf[RBM])
     val classifierOverride = new ConfOverride {
       override def `override`(i: Int, builder: Builder):  Unit = {
         builder.activationFunction(Activations.softMaxRows)

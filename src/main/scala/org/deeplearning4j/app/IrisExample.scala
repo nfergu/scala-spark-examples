@@ -18,6 +18,7 @@ import org.deeplearning4j.spark.util.MLLibUtil
 import org.nd4j.linalg.api.activation.Activations
 import org.nd4j.linalg.dataset.DataSet
 import org.nd4j.linalg.lossfunctions.LossFunctions
+import scala.collection.JavaConversions._
 
 /**
  * Created by agibsonccc on 2/8/15.
@@ -25,7 +26,7 @@ import org.nd4j.linalg.lossfunctions.LossFunctions
 class IrisExample {
 
   def main(args: Array[String]) {
-    val layerFactory = LayerFactories.getFactory(Class[RBM])
+    val layerFactory = LayerFactories.getFactory(classOf[RBM])
     val classifierOverride = new ConfOverride {
       override def `override`(i: Int, builder: Builder):  Unit = {
         builder.activationFunction(Activations.softMaxRows)
@@ -59,7 +60,7 @@ class IrisExample {
     d.shuffle
     val next: java.util.List[DataSet] = d.asList
 
-    val data: JavaRDD[DataSet] = sc.parallelize(next)
+    val data: RDD[DataSet] = sc.parallelize(next)
     val examples = MLLibUtil.fromDataSet(sc,data).rdd
     val network2: MultiLayerNetwork = SparkDl4jMultiLayer.train(examples,conf)
 
